@@ -9,7 +9,7 @@ class FacturaBot
         txt = "Esta es cantidad: #{@cantidad}\n
         Este es precio unitario: #{@precioUnitario}\n
         Este es el estado: #{@estado}"
-        subtotal()
+        subtotal = "# #{@cantidad} * $#{@precioUnitario} = $#{subtotal()}"
     end
 
     def subtotal
