@@ -1,14 +1,19 @@
 class FacturaBot
     def initialize(cantidad, precioUnitario, estado)
-        @cantidad = cantidad
-        @precioUnitario = precioUnitario
+        @cantidad = cantidad.to_i
+        @precioUnitario = precioUnitario.to_f
         @estado = estado
     end
 
     def calcular
-        "Esta es cantidad: #{@cantidad}\n
+        txt = "Esta es cantidad: #{@cantidad}\n
         Este es precio unitario: #{@precioUnitario}\n
         Este es el estado: #{@estado}"
+        subtotal()
+    end
+
+    def subtotal
+        @cantidad * @precioUnitario
     end
 end
 
