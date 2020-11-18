@@ -1,4 +1,5 @@
 class FacturaBot
+
     def initialize(cantidad, precioUnitario, estado)
         @cantidad = cantidad.to_i
         @precioUnitario = precioUnitario.to_f
@@ -17,9 +18,22 @@ class FacturaBot
     def calcularDescuento
         descuento = {}
         @totalAntesDescuento = subtotal() + calcularImpuesto()
-        if @totalAntesDescuento > 1000
+        case @totalAntesDescuento
+        when 1001..5000
             descuento['porcentaje'] = 3
             descuento['cantidad'] = @totalAntesDescuento * 0.03
+        when 5001..7000
+            descuento['porcentaje'] = 5
+            descuento['cantidad'] = @totalAntesDescuento * 0.05
+        when 7001..10000
+            descuento['porcentaje'] = 7
+            descuento['cantidad'] = @totalAntesDescuento * 0.07
+        when 10001..50000
+            descuento['porcentaje'] = 10
+            descuento['cantidad'] = @totalAntesDescuento * 0.1
+        when 50001..Float::INFINITY
+            descuento['porcentaje'] = 50
+            descuento['cantidad'] = @totalAntesDescuento * 0.15
         else
             descuento['porcentaje'] = 0
             descuento['cantidad'] = 0
