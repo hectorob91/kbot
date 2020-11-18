@@ -10,10 +10,17 @@ class FacturaBot
         Este es precio unitario: #{@precioUnitario}\n
         Este es el estado: #{@estado}"
         subtotal = "# #{@cantidad} * $#{@precioUnitario} = $#{subtotal()}"
+        impuesto = "CA (%8.25) = $#{calcularImpuesto()}"
+        return "#{subtotal}\n#{impuesto}"
     end
 
     def subtotal
         @cantidad * @precioUnitario
+    end
+
+    def calcularImpuesto
+        # Regresa impuesto de California
+        subtotal() * 0.0825
     end
 end
 
