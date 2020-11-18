@@ -27,14 +27,19 @@ class FacturaBot
         return descuento
     end
 
+    def calcularTotal
+        subtotal() + calcularImpuesto() - calcularDescuento()['cantidad']
+    end
+
     def calcular
         txt = "Esta es cantidad: #{@cantidad}\n
         Este es precio unitario: #{@precioUnitario}\n
         Este es el estado: #{@estado}"
-        subtotal = "# #{@cantidad} * $#{@precioUnitario} = $#{subtotal()}"
-        impuesto = "CA (%8.25) = $#{calcularImpuesto()}"
-        descuento = "DTO(%#{calcularDescuento()['porcentaje']}) = $#{calcularDescuento()['cantidad']}"
-        return "#{subtotal}\n#{impuesto}\n#{descuento}"
+        subtotalTxt = "# #{@cantidad} * $#{@precioUnitario} = $#{subtotal()}"
+        impuestoTxt = "CA (%8.25) = $#{calcularImpuesto()}"
+        descuentoTxt = "DTO(%#{calcularDescuento()['porcentaje']}) = $#{calcularDescuento()['cantidad']}"
+        totalTxt = "Total = $#{calcularTotal()}"
+        return "#{subtotalTxt}\n#{impuestoTxt}\n#{descuentoTxt}\n#{totalTxt}"
     end
 end
 
